@@ -1,48 +1,35 @@
-
 package studentRegistration;
 
-public class Main {
-    private static int size1=1;
-    public static void main(String[] args) {
+import java.util.Scanner;
+public class studentRegistration {
+    static Scanner read = new Scanner(System.in);
 
-
-        System.out.println("This program let students input their credentials for registration \n");
-
-        String[] name = new String[size1];
-        String[] age = new String[size1];
-        String[] email = new String[size1];
-        String[] course = new String[size1];
-
-        studentRegistration callToMainMethod = new studentRegistration();
-        callToMainMethod.studentDecision();
-        System.out.print("Enter your Complete Name in the format SURNAME, FIRST NAME MIDDLE INITIAL: ");
-        callToMainMethod.fillArray(name, name.length);
-        System.out.print("Enter your age: ");
-        callToMainMethod.fillArray(age, age.length);
-        System.out.print("Enter your email: ");
-        callToMainMethod.fillArray(email, email.length);
-        System.out.print("Enter your course: ");
-        callToMainMethod.fillArray(course, course.length);
-
-
-
-
-        System.out.println("\n Student's credential \n");
-        System.out.print("Name: ");
-        callToMainMethod.printArray(name, name.length);
-        System.out.println();
-        System.out.print("Age: ");
-        callToMainMethod.printArray(age, age.length);
-        System.out.println();
-        System.out.print("Email: ");
-        callToMainMethod.printArray(email, email.length);
-        System.out.println();
-        System.out.print("Course: ");
-        callToMainMethod.printArray(course, course.length);
-
-        System.out.print("\n");
-        callToMainMethod.sendAdditionalInfo();
-
-
+    public static void fillArray(String[] list, int noOfElements){
+        int index;
+        for(index = 0; index < noOfElements; index++){
+            list[index] = read.nextLine();
+        }
+    }
+    public static void printArray( String[] list, int noOfElements){
+        int index;
+        for(index = 0; index < noOfElements; index++){
+            System.out.print(list[index] + " ");
+        }
+    }
+    public static void studentDecision(){
+        String decide;
+        System.out.println("Would you like to enroll in this school? Yes or No? ");
+        decide = read.nextLine();
+        if (decide.equalsIgnoreCase("Yes")) {
+            System.out.println("Nice! We will proceed to the next step");
+        }
+        else{
+            System.out.println("Thank you, feel free to come back if you change your mind!");
+            System.exit(0);
+        }
+    }
+    public static void sendAdditionalInfo(){
+        System.out.println("\n Thank you for registering");
+        System.out.println("Wait for 3 working days to process your information! We'll be sending you ny that time, an email for the enrollment part");
     }
 }
