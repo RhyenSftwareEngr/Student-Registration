@@ -22,15 +22,21 @@ jobs:
       with:
         languages: java-kotlin
 
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
     - name: Build Java Code
       run: |
-        # Replace this with your actual build command
+        # Ensure that the Maven Wrapper script is available
+        # Generate it if missing: mvn -N io.takari:maven:wrapper
         echo "Building Java application"
         ./mvnw clean install
 
     - name: Perform CodeQL Analysis
       run: |
-        # Replace this with your actual CodeQL analysis commands
         echo "Performing CodeQL Analysis"
         codeql database create --language=java --source-root ./ --output=codeql-database
         codeql query run --database=codeql-database security-extended.ql
